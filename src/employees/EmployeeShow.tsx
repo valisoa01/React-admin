@@ -1,0 +1,46 @@
+import {
+  Show,
+  SimpleShowLayout,
+  TextField,
+  NumberField,
+  BooleanField,
+  TopToolbar,
+  ListButton,
+  EditButton
+} from "react-admin";
+
+const EmployeeShowActions = () => {
+  return (
+    <TopToolbar>
+      <ListButton />
+      <EditButton />
+    </TopToolbar>
+  );
+};
+
+export const EmployeeShow = () => {
+  return (
+    <Show actions={<EmployeeShowActions />}>
+      <SimpleShowLayout>
+        <TextField source="firstname" label="Prénom" />
+
+        <TextField source="lastname" label="Nom" />
+
+        <TextField source="email" label="Email" />
+
+        <TextField source="department" label="Département" />
+
+        <NumberField
+          source="salary"
+          label="Salaire"
+          options={{
+            style: "currency",
+            currency: "EUR",
+          }}
+        />
+
+        <BooleanField source="active" label="Actif" />
+      </SimpleShowLayout>
+    </Show>
+  );
+};
