@@ -1,12 +1,8 @@
- import {
-    List,
-    Datagrid,
-    TextField
- } from 'react-admin';
+import { List, Datagrid, TextField } from "react-admin";
 
 export const EmployeeList = () => {
   return (
-    <List>
+    <List resource="employees">
       <Datagrid>
         <TextField source="firstname" />
         <TextField source="lastname" />
