@@ -58,7 +58,8 @@ export const InternsList = () => {
           reference="employees"
           label="Encadrant"
         >
-          <TextField source="firstName" /> <TextField source="lastName" />
+          <TextField source="firstname" />
+          <TextField source="lastname" />
         </ReferenceField>
 
         <EditButton />

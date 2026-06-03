@@ -26,6 +26,27 @@
       "department": "RH",
       "salary": 2600,
       "active": true
+    },
+    {
+      "id": 4,
+      "salary": 15000,
+      "active": true,
+      "firstName": "test",
+      "lastName": "testes",
+      "email": "valisoa.rafanomezantsoa@student.passerellesnumeriques.org",
+      "department": "Marketing"
+    }
+  ],
+  "interns": [
+    {
+      "salary": 150000,
+      "active": true,
+      "firstName": "Rafanomezantsoa",
+      "lastName": "Tolotriniaina Valisoa",
+      "email": "valisoatolotriniaina@gmail.com",
+      "department": "Informatique",
+      "employeeId": 2,
+      "id": 1
     }
   ]
 }

@@ -1,45 +1,66 @@
 import {
-  Show,
-  SimpleShowLayout,
-  TextField,
-  NumberField,
-  BooleanField,
-  TopToolbar,
-  ListButton,
-  EditButton,
+  Create,
+  SimpleForm,
+  TextInput,
+  SelectInput,
+  NumberInput,
+  BooleanInput,
+  required,
+  minValue,
+  email,
 } from "react-admin";
 
-const EmployeeShowActions = () => {
+export const InternsCreate = () => {
   return (
-    <TopToolbar>
-      <ListButton />
-      <EditButton />
-    </TopToolbar>
-  );
-};
+    <Create redirect="list">
+      <SimpleForm>
+        <TextInput source="firstName" label="Prénom" validate={required()} />
 
-export const EmployeeShow = () => {
-  return (
-    <Show actions={<EmployeeShowActions />}>
-      <SimpleShowLayout>
-        <TextField source="firstname" label="Prénom" />
+        <TextInput source="lastName" label="Nom" validate={required()} />
 
-        <TextField source="lastname" label="Nom" />
-
-        <TextField source="email" />
-
-        <TextField source="department" label="Département" />
-
-        <NumberField
-          source="salary"
-          options={{
-            style: "currency",
-            currency: "EUR",
-          }}
+        <TextInput
+          source="email"
+          label="Email"
+          validate={[
+            required("L'email est obligatoire"),
+            email("Adresse email terminaison par @gmail.com"),
+          ]}
         />
 
-        <BooleanField source="active" />
-      </SimpleShowLayout>
-    </Show>
+        <SelectInput
+          source="department"
+          label="Département"
+          choices={[
+            { id: "Informatique", name: "Informatique" },
+            { id: "Marketing", name: "Marketing" },
+            { id: "RH", name: "RH" },
+          ]}
+          validate={required()}
+        />
+
+        <NumberInput
+          source="salary"
+          label="Salaire"
+          defaultValue={1500}
+          min={1500}
+          validate={[
+            required("Le salaire est obligatoire"),
+            minValue(1500, "Le salaire doit être supérieur ou égal à 1500"),
+          ]}
+        />
+        <BooleanInput source="active" label="Actif" defaultValue={true} />
+
+        <SelectInput
+          source="employeeId"
+          label="Encadrant"
+          choices={[
+            { id: 1, name: "Alice Martin" },
+            { id: 2, name: "Bob Dupont" },
+            { id: 3, name: "Clara Nguyen" },
+          ]}
+          validate={required("Encadrant obligatoire")}
+        />
+      </SimpleForm>
+    </Create>
   );
 };
