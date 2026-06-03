@@ -25,16 +25,7 @@
       "email": "clara@company.com",
       "department": "RH",
       "salary": 2600,
-      "active": false
-    },
-    {
-      "active": true,
-      "firstname": "Rafanomezantsoa",
-      "lastname": "Tolotriniaina Valisoa",
-      "email": "valisoatolotriniaina@gmail.com",
-      "department": "Informatique",
-      "salary": 5000000,
-      "id": 4
+      "active": true
     }
   ]
 }

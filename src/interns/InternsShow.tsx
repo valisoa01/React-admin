@@ -10,7 +10,7 @@ import {
   EditButton,
 } from "react-admin";
 
-const EmployeeShowActions = () => {
+const InternShowActions = () => {
   return (
     <TopToolbar>
       <ListButton />
@@ -18,7 +18,7 @@ const EmployeeShowActions = () => {
     </TopToolbar>
   );
 };
-export const EmployeeTitle = () => {
+export const InternTitle = () => {
   const record = useRecordContext();
   if (!record) return null;
 
@@ -29,10 +29,10 @@ export const EmployeeTitle = () => {
   );
 };
 
-export const EmployeeShow = () => {
+export const InternShow = () => {
   return (
-    <Show actions={<EmployeeShowActions />}>
-      <EmployeeTitle />
+    <Show actions={<InternShowActions />}>
+      <InternTitle />
       <SimpleShowLayout>
         <TextField source="firstname" label="Prénom" />
 
