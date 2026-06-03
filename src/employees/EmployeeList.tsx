@@ -11,6 +11,7 @@ import {
   EditButton,
   DeleteButton,
 } from "react-admin";
+import { QuickStatusToggle } from "./QuickStatusToggle";
 
 const EmployeePagination = () => (
   <Pagination rowsPerPageOptions={[5, 10, 25]} />
@@ -53,6 +54,7 @@ export const EmployeeList = () => {
         />
 
         <BooleanField source="active" />
+        <QuickStatusToggle />
         <EditButton />
         <DeleteButton />
       </Datagrid>
