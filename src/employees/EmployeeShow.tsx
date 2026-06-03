@@ -8,6 +8,8 @@ import {
   ListButton,
   EditButton,
 } from "react-admin";
+import { InternsByManager } from "./InternsByManager";
+import { DepartmentStats } from "./DepartmentStats";
 
 const EmployeeShowActions = () => {
   return (
@@ -39,6 +41,8 @@ export const EmployeeShow = () => {
         />
 
         <BooleanField source="active" />
+        <InternsByManager />
+        <DepartmentStats />
       </SimpleShowLayout>
     </Show>
   );
