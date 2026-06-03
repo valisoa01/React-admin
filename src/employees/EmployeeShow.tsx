@@ -6,7 +6,6 @@ import {
   BooleanField,
   TopToolbar,
   ListButton,
-  useRecordContext,
   EditButton,
 } from "react-admin";
 
@@ -18,40 +17,28 @@ const EmployeeShowActions = () => {
     </TopToolbar>
   );
 };
-export const EmployeeTitle = () => {
-  const record = useRecordContext();
-  if (!record) return null;
-
-  return (
-    <span>
-      Detail : {record.firstname} {record.lastname}
-    </span>
-  );
-};
 
 export const EmployeeShow = () => {
   return (
     <Show actions={<EmployeeShowActions />}>
-      <EmployeeTitle />
       <SimpleShowLayout>
         <TextField source="firstname" label="Prénom" />
 
         <TextField source="lastname" label="Nom" />
 
-        <TextField source="email" label="Email" />
+        <TextField source="email" />
 
         <TextField source="department" label="Département" />
 
         <NumberField
           source="salary"
-          label="Salaire"
           options={{
             style: "currency",
             currency: "EUR",
           }}
         />
 
-        <BooleanField source="active" label="Actif" />
+        <BooleanField source="active" />
       </SimpleShowLayout>
     </Show>
   );

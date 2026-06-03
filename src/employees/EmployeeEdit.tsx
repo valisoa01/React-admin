@@ -1,73 +1,56 @@
 import {
+  Create,
   SimpleForm,
   TextInput,
+  SelectInput,
   NumberInput,
   BooleanInput,
-  SelectInput,
   required,
   minValue,
-  useRecordContext,
-  Edit,
+  email,
 } from "react-admin";
 
-const departmentChoices = [
-  { id: "Informatique", name: "Informatique" },
-  { id: "Marketing", name: "Marketing" },
-  { id: "RH", name: "RH" },
-  { id: "Finance", name: "Finance" },
-];
-
-export const EmployeeTitle = () => {
-  const record = useRecordContext();
-  if (!record) return null;
-
+export const EmployeeCreate = () => {
   return (
-    <span>
-      Modifier : {record.firstname} {record.lastname}
-    </span>
-  );
-};
-export const EmployeeEdit = () => {
-  return (
-    <Edit title={<EmployeeTitle />}>
+    <Create redirect="list">
       <SimpleForm>
-        <TextInput
-          source="firstname"
-          label="Prénom"
-          validate={required()}
-          fullWidth
-        />
+        <TextInput source="firstName" label="Prénom" validate={required()} />
 
-        <TextInput
-          source="lastname"
-          label="Nom"
-          validate={required()}
-          fullWidth
-        />
+        <TextInput source="lastName" label="Nom" validate={required()} />
 
         <TextInput
           source="email"
           label="Email"
-          validate={required()}
-          fullWidth
+          validate={[
+            required("L'email est obligatoire"),
+            email("Adresse email terminaison par @gmail.com"),
+          ]}
         />
 
         <SelectInput
           source="department"
           label="Département"
-          choices={departmentChoices}
+          choices={[
+            { id: "Informatique", name: "Informatique" },
+            { id: "Marketing", name: "Marketing" },
+            { id: "RH", name: "RH" },
+          ]}
           validate={required()}
-          fullWidth
         />
 
         <NumberInput
           source="salary"
           label="Salaire"
-          validate={[required(), minValue(1500)]}
+          defaultValue={1500}
+          min={1500}
+          validate={[
+            required("Le salaire est obligatoire"),
+            minValue(1500, "Le salaire doit être supérieur ou égal à 1500"),
+          ]}
         />
 
-        <BooleanInput source="active" label="Actif" />
+        <BooleanInput source="active" label="Actif" defaultValue={true} />
       </SimpleForm>
-    </Edit>
+    </Create>
   );
 };

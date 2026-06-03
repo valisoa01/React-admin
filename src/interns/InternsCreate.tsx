@@ -1,41 +1,45 @@
 import {
-  Create,
-  SimpleForm,
-  TextInput,
-  NumberInput,
-  BooleanInput,
-  SelectInput,
-  required,
-  minValue,
+  Show,
+  SimpleShowLayout,
+  TextField,
+  NumberField,
+  BooleanField,
+  TopToolbar,
+  ListButton,
+  EditButton,
 } from "react-admin";
 
-const departments = [
-  { id: "Informatique", name: "Informatique" },
-  { id: "Marketing", name: "Marketing" },
-  { id: "RH", name: "RH" },
-  { id: "Finance", name: "Finance" },
-];
+const EmployeeShowActions = () => {
+  return (
+    <TopToolbar>
+      <ListButton />
+      <EditButton />
+    </TopToolbar>
+  );
+};
 
-export const InternCreate = () => (
-  <Create redirect="list">
-    <SimpleForm>
-      <TextInput source="firstname" validate={required()} />
-      <TextInput source="lastname" validate={required()} />
-      <TextInput source="email" validate={required()} />
+export const EmployeeShow = () => {
+  return (
+    <Show actions={<EmployeeShowActions />}>
+      <SimpleShowLayout>
+        <TextField source="firstname" label="Prénom" />
 
-      <SelectInput
-        source="department"
-        choices={departments}
-        validate={required()}
-      />
+        <TextField source="lastname" label="Nom" />
 
-      <NumberInput
-        source="duration"
-        label="Durée (mois)"
-        validate={[required(), minValue(1)]}
-      />
+        <TextField source="email" />
 
-      <BooleanInput source="active" defaultValue={true} />
-    </SimpleForm>
-  </Create>
-);
+        <TextField source="department" label="Département" />
+
+        <NumberField
+          source="salary"
+          options={{
+            style: "currency",
+            currency: "EUR",
+          }}
+        />
+
+        <BooleanField source="active" />
+      </SimpleShowLayout>
+    </Show>
+  );
+};
