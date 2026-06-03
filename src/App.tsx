@@ -8,12 +8,12 @@ import { InternsShow } from "./interns/InternsShow";
 import { InternsEdit } from "./interns/InternsEdit";
 import { InternsList } from "./interns/InternsList";
 import { InternsCreate } from "./interns/InternsCreate";
-
+import { Dashboard } from "./pages/Dashboard";
 const dataProvider = jsonServerProvider("http://localhost:3004");
 
 export default function App() {
   return (
-    <Admin dataProvider={dataProvider}>
+    <Admin dataProvider={dataProvider} dashboard={Dashboard}>
       <Resource
         name="employees"
         list={EmployeeList}
