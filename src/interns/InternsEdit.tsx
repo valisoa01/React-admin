@@ -1,45 +1,86 @@
 import {
-  Show,
-  SimpleShowLayout,
-  TextField,
-  NumberField,
-  BooleanField,
-  TopToolbar,
-  ListButton,
-  EditButton,
+  Edit,
+  SimpleForm,
+  TextInput,
+  SelectInput,
+  NumberInput,
+  BooleanInput,
+  required,
+  minValue,
+  useRecordContext,
 } from "react-admin";
 
-const EmployeeShowActions = () => {
+const InternsTitle = () => {
+  const record = useRecordContext();
+
   return (
-    <TopToolbar>
-      <ListButton />
-      <EditButton />
-    </TopToolbar>
+    <span>
+      Modifier : {record?.firstName} {record?.lastName}
+    </span>
   );
 };
 
-export const EmployeeShow = () => {
+export const InternsEdit = () => {
   return (
-    <Show actions={<EmployeeShowActions />}>
-      <SimpleShowLayout>
-        <TextField source="firstname" label="Prénom" />
-
-        <TextField source="lastname" label="Nom" />
-
-        <TextField source="email" />
-
-        <TextField source="department" label="Département" />
-
-        <NumberField
-          source="salary"
-          options={{
-            style: "currency",
-            currency: "EUR",
-          }}
+    <Edit title={<InternsTitle />}>
+      <SimpleForm>
+        <TextInput
+          source="firstName"
+          label="Prénom"
+          validate={required("Prénom obligatoire")}
+          fullWidth
         />
 
-        <BooleanField source="active" />
-      </SimpleShowLayout>
-    </Show>
+        <TextInput
+          source="lastName"
+          label="Nom"
+          validate={required("Nom obligatoire")}
+          fullWidth
+        />
+
+        <TextInput
+          source="email"
+          label="Email"
+          validate={required("Email obligatoire")}
+          fullWidth
+        />
+
+        <SelectInput
+          source="department"
+          label="Département"
+          choices={[
+            { id: "Informatique", name: "Informatique" },
+            { id: "Marketing", name: "Marketing" },
+            { id: "RH", name: "RH" },
+          ]}
+          validate={required("Département obligatoire")}
+          fullWidth
+        />
+
+        <NumberInput
+          source="salary"
+          label="Salaire"
+          validate={[
+            required("Salaire obligatoire"),
+            minValue(1500, "Salaire minimum 1500"),
+          ]}
+          fullWidth
+        />
+
+        <BooleanInput source="active" label="Actif" />
+
+        <SelectInput
+          source="employeeId"
+          label="Encadrant"
+          choices={[
+            { id: 1, name: "Alice Martin" },
+            { id: 2, name: "Bob Dupont" },
+            { id: 3, name: "Clara Nguyen" },
+          ]}
+          validate={required("Encadrant obligatoire")}
+          fullWidth
+        />
+      </SimpleForm>
+    </Edit>
   );
 };

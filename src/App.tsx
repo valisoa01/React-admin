@@ -2,11 +2,16 @@ import { Admin, Resource } from "react-admin";
 import jsonServerProvider from "ra-data-json-server";
 import { EmployeeList } from "./employees/EmployeeList";
 import { EmployeeCreate } from "./employees/EmployeeCreate";
-import { EmployeeEdit } from "./employees/EmployeeEdit";
 import { EmployeeShow } from "./employees/EmployeeShow";
+import { EmployeeEdit } from "./employees/EmployeeEdit";
+import { InternsShow } from "./interns/InternsShow";
+import { InternsEdit } from "./interns/InternsEdit";
+import { InternsList } from "./interns/InternsList";
+import { InternsCreate } from "./interns/InternsCreate";
+
 const dataProvider = jsonServerProvider("http://localhost:3002");
 
-function App() {
+export default function App() {
   return (
     <Admin dataProvider={dataProvider}>
       <Resource
@@ -16,8 +21,14 @@ function App() {
         edit={EmployeeEdit}
         show={EmployeeShow}
       />
+
+      <Resource
+        name="interns"
+        list={InternsList}
+        create={InternsCreate}
+        edit={InternsEdit}
+        show={InternsShow}
+      />
     </Admin>
   );
 }
-
-export default App;

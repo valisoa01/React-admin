@@ -1,45 +1,33 @@
-/* eslint-disable react/jsx-key */
 import {
-  List,
-  Datagrid,
+  Show,
+  SimpleShowLayout,
   TextField,
   NumberField,
   BooleanField,
-  TextInput,
-  SelectInput,
-  Pagination,
+  TopToolbar,
+  ListButton,
   EditButton,
-  DeleteButton,
   ReferenceField,
 } from "react-admin";
 
-const InternsPagination = () => <Pagination rowsPerPageOptions={[5, 10, 25]} />;
-
-const internsFilters = [
-  <TextInput label="Recherche" source="q" alwaysOn />,
-
-  <SelectInput
-    label="Département"
-    source="department"
-    choices={[
-      { id: "Informatique", name: "Informatique" },
-      { id: "Marketing", name: "Marketing" },
-      { id: "RH", name: "RH" },
-    ]}
-  />,
-];
-
-export const InternsList = () => {
+const InternsShowActions = () => {
   return (
-    <List
-      filters={internsFilters}
-      pagination={<InternsPagination />}
-      perPage={5}
-    >
-      <Datagrid rowClick="show">
+    <TopToolbar>
+      <ListButton />
+      <EditButton />
+    </TopToolbar>
+  );
+};
+
+export const InternsShow = () => {
+  return (
+    <Show actions={<InternsShowActions />}>
+      <SimpleShowLayout>
         <TextField source="firstName" label="Prénom" />
         <TextField source="lastName" label="Nom" />
+
         <TextField source="email" label="Email" />
+
         <TextField source="department" label="Département" />
 
         <NumberField
@@ -60,10 +48,7 @@ export const InternsList = () => {
         >
           <TextField source="firstName" /> <TextField source="lastName" />
         </ReferenceField>
-
-        <EditButton />
-        <DeleteButton />
-      </Datagrid>
-    </List>
+      </SimpleShowLayout>
+    </Show>
   );
 };
