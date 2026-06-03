@@ -21,7 +21,7 @@ export const Dashboard = () => {
       : 0;
 
   return (
-    <Card>
+    <Card className="bg-amber-400 text-center text-violet-50">
       <CardContent>
         <Typography variant="h4">Dashboard RH</Typography>
 
