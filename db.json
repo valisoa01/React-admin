@@ -1,15 +1,6 @@
 {
   "employees": [
     {
-      "id": 1,
-      "firstname": "Alices",
-      "lastname": "Martin",
-      "email": "alice@company.com",
-      "department": "Informatique",
-      "salary": 2800,
-      "active": true
-    },
-    {
       "id": 2,
       "firstname": "Bob",
       "lastname": "Dupont",
@@ -34,7 +25,27 @@
       "firstName": "test",
       "lastName": "testes",
       "email": "valisoa.rafanomezantsoa@student.passerellesnumeriques.org",
-      "department": "Marketing"
+      "department": "Marketing",
+      "firstname": "Valisoa",
+      "lastname": "Rafanomezantsoa"
+    },
+    {
+      "salary": 140000,
+      "active": true,
+      "firstName": "David",
+      "lastName": "Fils",
+      "email": "DavidFils@gmail.com",
+      "department": "Informatique",
+      "id": 5
+    },
+    {
+      "salary": 150000,
+      "active": true,
+      "firstName": "Zinedis",
+      "lastName": "Safidy",
+      "email": "safidy@gmail.com",
+      "department": "Marketing",
+      "id": 6
     }
   ],
   "interns": [
@@ -47,6 +58,16 @@
       "department": "Informatique",
       "employeeId": 2,
       "id": 1
+    },
+    {
+      "salary": 15000,
+      "active": true,
+      "firstName": "Christian",
+      "lastName": "Vôkrisy",
+      "email": "christian@gmail.com",
+      "department": "Informatique",
+      "employeeId": 3,
+      "id": 2
     }
   ]
 }
