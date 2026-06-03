@@ -10,6 +10,7 @@ import {
 } from "react-admin";
 import { InternsByManager } from "./InternsByManager";
 import { DepartmentStats } from "./DepartmentStats";
+import { QuickInternCreate } from "./QuickInternCreate";
 
 const EmployeeShowActions = () => {
   return (
@@ -43,6 +44,7 @@ export const EmployeeShow = () => {
         <BooleanField source="active" />
         <InternsByManager />
         <DepartmentStats />
+        <QuickInternCreate />
       </SimpleShowLayout>
     </Show>
   );
