@@ -1,45 +1,45 @@
+/* eslint-disable react/jsx-key */
 import {
-  Show,
-  SimpleShowLayout,
+  List,
+  Datagrid,
   TextField,
   NumberField,
   BooleanField,
-  TopToolbar,
-  ListButton,
-  useRecordContext,
+  TextInput,
+  SelectInput,
+  Pagination,
   EditButton,
+  DeleteButton,
+  ReferenceField,
 } from "react-admin";
 
-const InternShowActions = () => {
+const InternsPagination = () => <Pagination rowsPerPageOptions={[5, 10, 25]} />;
+
+const internsFilters = [
+  <TextInput label="Recherche" source="q" alwaysOn />,
+
+  <SelectInput
+    label="Département"
+    source="department"
+    choices={[
+      { id: "Informatique", name: "Informatique" },
+      { id: "Marketing", name: "Marketing" },
+      { id: "RH", name: "RH" },
+    ]}
+  />,
+];
+
+export const InternsList = () => {
   return (
-    <TopToolbar>
-      <ListButton />
-      <EditButton />
-    </TopToolbar>
-  );
-};
-export const InternTitle = () => {
-  const record = useRecordContext();
-  if (!record) return null;
-
-  return (
-    <span>
-      Detail : {record.firstname} {record.lastname}
-    </span>
-  );
-};
-
-export const InternShow = () => {
-  return (
-    <Show actions={<InternShowActions />}>
-      <InternTitle />
-      <SimpleShowLayout>
-        <TextField source="firstname" label="Prénom" />
-
-        <TextField source="lastname" label="Nom" />
-
+    <List
+      filters={internsFilters}
+      pagination={<InternsPagination />}
+      perPage={5}
+    >
+      <Datagrid rowClick="show">
+        <TextField source="firstName" label="Prénom" />
+        <TextField source="lastName" label="Nom" />
         <TextField source="email" label="Email" />
-
         <TextField source="department" label="Département" />
 
         <NumberField
@@ -52,7 +52,18 @@ export const InternShow = () => {
         />
 
         <BooleanField source="active" label="Actif" />
-      </SimpleShowLayout>
-    </Show>
+
+        <ReferenceField
+          source="employeeId"
+          reference="employees"
+          label="Encadrant"
+        >
+          <TextField source="firstName" /> <TextField source="lastName" />
+        </ReferenceField>
+
+        <EditButton />
+        <DeleteButton />
+      </Datagrid>
+    </List>
   );
 };

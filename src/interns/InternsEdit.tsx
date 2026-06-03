@@ -1,66 +1,45 @@
 import {
-  Edit,
-  SimpleForm,
-  TextInput,
-  NumberInput,
-  BooleanInput,
-  SelectInput,
-  required,
-  minValue,
-  useRecordContext,
+  Show,
+  SimpleShowLayout,
+  TextField,
+  NumberField,
+  BooleanField,
+  TopToolbar,
+  ListButton,
+  EditButton,
 } from "react-admin";
-const InternTitle = () => {
-  const record = useRecordContext();
 
-  if (!record) return null;
-
+const EmployeeShowActions = () => {
   return (
-    <span>
-      Modifier : {record.firstname} {record.lastname}
-    </span>
+    <TopToolbar>
+      <ListButton />
+      <EditButton />
+    </TopToolbar>
   );
 };
-export const EmployeeEdit = () => {
+
+export const EmployeeShow = () => {
   return (
-    <Edit title={<InternTitle />}>
-      <SimpleForm>
-        <TextInput
-          source="firstname"
-          label="Prénom"
-          validate={required()}
-          fullWidth
-        />
+    <Show actions={<EmployeeShowActions />}>
+      <SimpleShowLayout>
+        <TextField source="firstname" label="Prénom" />
 
-        <TextInput
-          source="lastname"
-          label="Nom"
-          validate={required()}
-          fullWidth
-        />
+        <TextField source="lastname" label="Nom" />
 
-        <TextInput
-          source="email"
-          label="Email"
-          validate={required()}
-          fullWidth
-        />
+        <TextField source="email" />
 
-        <SelectInput
-          source="department"
-          label="Département"
-          choices={departmentChoices}
-          validate={required()}
-          fullWidth
-        />
+        <TextField source="department" label="Département" />
 
-        <NumberInput
+        <NumberField
           source="salary"
-          label="Salaire"
-          validate={[required(), minValue(1500)]}
+          options={{
+            style: "currency",
+            currency: "EUR",
+          }}
         />
 
-        <BooleanInput source="active" label="Actif" />
-      </SimpleForm>
-    </Edit>
+        <BooleanField source="active" />
+      </SimpleShowLayout>
+    </Show>
   );
 };
