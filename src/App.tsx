@@ -9,7 +9,7 @@ import { InternsEdit } from "./interns/InternsEdit";
 import { InternsList } from "./interns/InternsList";
 import { InternsCreate } from "./interns/InternsCreate";
 import { Dashboard } from "./pages/Dashboard";
-const dataProvider = jsonServerProvider("http://localhost:3004");
+const dataProvider = jsonServerProvider("http://localhost:3002");
 
 export default function App() {
   return (
